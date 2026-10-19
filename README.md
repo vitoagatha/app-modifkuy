@@ -1,84 +1,109 @@
-# Laravel SB Admin 2
+# 🏍️ Modif Kuy
 
-SB Admin 2 for Laravel.
+Modif Kuy adalah aplikasi web untuk membantu pecinta motor memodifikasi motornya. Pengunjung bisa mencari inspirasi dari motor modifikasi (garage) yang dipamerkan, melihat daftar part yang dipakai, dan membaca info tren serta tips. Admin mengelola seluruh konten lewat dashboard.
 
-| Laravel Version | Branch | Support     |
-|-----------------|--------|-------------|
-| 11.0            | main   |             |
-| 10.0            | v10.0  |             |
-| 9.0             | v9.0   | End of life |
-| 8.0             | v8.0   | End of life |
+## ✨ Fitur
 
-## Requirements
+**Halaman publik**
+- Katalog garage dengan kategori **Matic** dan **Manual**
+- Bagian *Most Popular Motorcycle* di halaman depan
+- Halaman detail garage dengan galeri foto dan daftar modifikasi
+- Menu Categories, Recommendation, News, dan Help
+- Registrasi dan login pengguna
 
-- PHP >= 8.2
-- Ctype PHP Extension
-- cURL PHP Extension
-- DOM PHP Extension
-- Fileinfo PHP Extension
-- Filter PHP Extension
-- Hash PHP Extension
-- Mbstring PHP Extension
-- OpenSSL PHP Extension
-- PCRE PHP Extension
-- PDO PHP Extension
-- Session PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
+**Dashboard admin**
+- CRUD garage (gambar utama, judul, kategori, deskripsi)
+- Tambah, ubah, dan hapus foto tambahan untuk tiap garage
+- Akses dibatasi berdasarkan role (`admin`)
 
-## Installation
+## 🖼️ Screenshot
 
-- Clone the repo and `cd` into it
-- Run `composer install`
-- Rename or copy `.env.example` file to `.env`
-- Run `php artisan key:generate`
-- Set your database credentials in your `.env` file
+| Halaman Depan | Dashboard Admin |
+|---|---|
+| ![Home](docs/screenshots/home.png) | ![Dashboard](docs/screenshots/dashboard.png) |
 
-## Note
+## 🛠️ Tech Stack
 
-Recommend to install this preset on a project that you are starting from scratch, otherwise your project's design might break.
+- [Laravel 11](https://laravel.com) (PHP 8.2+)
+- MySQL
+- Bootstrap
+- [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) untuk tampilan dashboard
+- Laravel Mix (webpack) untuk build aset
+- Laragon 
 
-If you found this project useful, then please consider giving it a :star:
+## 📋 Kebutuhan Sistem
 
-## Credits
+- PHP >= 8.2 dengan ekstensi: Ctype, cURL, DOM, Fileinfo, Filter, Hash, Mbstring, OpenSSL, PCRE, PDO, Session, Tokenizer, XML
+- Composer
+- Node.js dan npm
+- MySQL / MariaDB
 
-Laravel SB Admin 2 uses some open-source third-party libraries/packages, many thanks to the web community.
+## 🚀 Instalasi
 
-- Laravel - Open source framework.
-- LaravelEasyNav - Making managing navigation in Laravel easy.
-- SB Admin 2 - Thanks to Start Bootstrap.
+1. Clone repository dan masuk ke foldernya
+   ```bash
+   git clone https://github.com/vitoagatha/app-modifkuy.git
+   cd app-modifkuy
+   ```
+2. Install dependency
+   ```bash
+   composer install
+   npm install
+   npm run dev
+   ```
+3. Salin file environment dan generate key
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+4. Buat database kosong di MySQL, lalu atur koneksinya di `.env`
+   ```env
+   DB_DATABASE=nama_database
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+5. Jalankan migrasi
+   ```bash
+   php artisan migrate
+   ```
+6. Buat symlink storage (wajib agar gambar tampil)
+   ```bash
+   php artisan storage:link
+   ```
+7. Jalankan aplikasi
+   ```bash
+   php artisan serve
+   ```
+   Lalu buka `http://127.0.0.1:8000`. Kalau memakai Laragon, aplikasi otomatis tersedia di `http://nama-folder.test`.
 
-## Preview
+## 🔑 Membuat Akun Admin
 
-`login`
+Buat akun admin lewat Tinker:
 
-<img src="https://imgur.com/YjGp6Sbl.png">
+```bash
+php artisan tinker
+```
+```php
+\DB::table('users')->insert([
+    'name' => 'Super',
+    'last_name' => 'Admin',
+    'username' => 'admin',
+    'email' => 'admin@example.com',
+    'password' => \Hash::make('ganti-password-ini'),
+    'role' => 'admin',
+    'created_at' => now(),
+    'updated_at' => now(),
+]);
+```
 
-***
+Lalu login dengan email dan password tersebut. Segera ganti password setelah masuk.
 
-`register`
+## 🙏 Credits
 
-<img src="https://imgur.com/Wj09cu4l.png">
+- [Laravel](https://laravel.com)
+- [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) oleh Start Bootstrap
+- [LaravelEasyNav](https://github.com/ldumitru/laravel-easy-nav)
 
-***
+## 📄 Lisensi
 
-`dashboard`
-
-<img src="https://imgur.com/CrmOfT5l.png">
-
-***
-
-`profile`
-
-<img src="https://imgur.com/5t4eS1rl.png">
-
-***
-
-`logout`
-
-<img src="https://imgur.com/d9JclOYl.png">
-
-## License
-
-Licensed under the [MIT](LICENSE) license.
-# app_modifkuytest
+Dirilis di bawah lisensi [MIT](LICENSE).
